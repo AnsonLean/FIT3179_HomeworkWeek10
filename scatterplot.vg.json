@@ -4,7 +4,7 @@
     "height": 400,
     "title": "Average Income vs Poverty Rate for year 2022",
     "data": {
-        "url": "hies_state.csv"
+        "url": "https://raw.githubusercontent.com/AnsonLean/FIT3179_HomeworkWeek9/refs/heads/main/hies_state.csv"
     },
     "params": [
         {
