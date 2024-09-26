@@ -1,0 +1,107 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 400,
+    "title": "Average Income vs Poverty Rate for year 2022",
+    "data": {
+        "url": "hies_state.csv"
+    },
+    "params": [
+        {
+            "name": "Income_Mean_Above",
+            "value": 0,
+            "bind": {
+                "input": "range", 
+                "min": 0, 
+                "max": 13000, 
+                "step": 500,
+                "name": "Income Mean Above"
+            }
+        }
+    ],
+    "transform": [
+        {
+            "filter": "datum.income_mean > Income_Mean_Above"
+        }
+    ],
+    "layer": [
+        {
+            "selection": {
+                "state_highlight": {
+                    "type": "multi",
+                    "fields": ["state"],
+                    "bind": "legend"
+                }
+            },
+            "mark": {
+                "type": "circle",
+                "size": 30
+            },
+            "encoding": {
+                "x": {
+                    "field": "income_mean",
+                    "type": "quantitative",
+                    "title": "Income Mean",
+                    "scale": {"domain": [0, 14000]}
+                },
+                "y": {
+                    "field": "poverty",
+                    "type": "quantitative",
+                    "scale": {"domain": [0, 22]}
+                },
+                "color": {
+                    "field": "state",
+                    "type": "nominal"
+                },
+                "opacity": {
+                    "condition": {"selection": "state_highlight", "value": 0.6},
+                    "value": 0.2
+                },
+                "tooltip": [
+                    {
+                        "field": "state",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "income_mean",
+                        "type": "quantitative"
+                    },
+                    {
+                        "field": "poverty",
+                        "type": "quantitative"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "dx": 5,
+                "dy": -5,
+                "fontSize": 9
+            },
+            "encoding": {
+                "x": {
+                    "field": "income_mean",
+                    "type": "quantitative"
+                },
+                "y": {
+                    "field": "poverty",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "state",
+                    "type": "nominal"
+                },
+                "color": {"value":"black"},
+                "opacity": {
+                    "condition": {"test": "datum['state']=='Kuala Lumpur' || datum['state']=='Sabah' || datum['state']=='Putrajaya' ", 
+                    "value": 1},
+                    "value": 0
+                }
+            }
+        }
+    ]
+}
