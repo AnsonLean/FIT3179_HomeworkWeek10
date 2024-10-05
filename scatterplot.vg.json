@@ -60,15 +60,19 @@
                 "tooltip": [
                     {
                         "field": "state",
-                        "type": "nominal"
+                        "type": "nominal",
+                        "title": "State"
                     },
                     {
                         "field": "income_mean",
-                        "type": "quantitative"
+                        "type": "quantitative",
+                        "title": "Income Mean (RM)",
+                        "format": ","
                     },
                     {
                         "field": "poverty",
-                        "type": "quantitative"
+                        "type": "quantitative",
+                        "title": "Poverty Rate"
                     }
                 ]
             }

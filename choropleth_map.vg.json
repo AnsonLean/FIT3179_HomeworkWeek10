@@ -58,7 +58,7 @@
         },
         "tooltip": [
           {"field": "properties.name", "type": "nominal", "title": "State"},
-          {"field": "Income Mean (RM)", "type": "quantitative"}
+          {"field": "Income Mean (RM)", "type": "quantitative","format": ","}
         ]
       }
     }
